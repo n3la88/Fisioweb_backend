@@ -1,0 +1,60 @@
+@section scriptsProyecto{
+
+    @* Scrips para que el table este en Espanol *@
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#ListaMascotas').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                }
+            });
+        });
+
+    </script>
+}
+<h2>Mis Mascotas</h2>
+
+<table id="ListaMascotas" class="display" style="text-align:center">
+    <thead>
+        <tr>
+            <th>Nombre de la Mascota</th>
+            <th>Edad</th>
+            <th>Raza</th>
+            <th>Ver Detalles</th>
+            <th>Editar</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_mascota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.edad_mascota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_raza)
+                </td>
+
+                <td>
+                    <input type="button" value="Detalles" class="btn btn-success" onclick="location.href='@Url.Action("VerDetalles", "Mascota", new { id = item.id_mascota })'">
+                </td>
+
+
+                <td>
+                    <input type="button" value="Detalles" class="btn btn-success" onclick="location.href='@Url.Action("EditarMascota", "Mascota", new { id = item.id_mascota })'">
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
